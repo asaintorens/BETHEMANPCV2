@@ -13,7 +13,7 @@ import java.util.Date;
 public class StartBeTheManGraphical {
 
 	private JFrame frame;
-	private Game BeTheMan;
+	private  Game BeTheMan;
 	private ThreadVerifPerdu leThraed;
 	/**
 	 * Launch the application.
@@ -52,7 +52,7 @@ public class StartBeTheManGraphical {
 	
 		this.BeTheMan = new Game("CrymX");
 		frame = new JFrame();
-		leThraed = new ThreadVerifPerdu(null);		
+		leThraed = new ThreadVerifPerdu(null,this);		
 		frame.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -61,24 +61,26 @@ public class StartBeTheManGraphical {
 				leThraed.setTempsTouche(tempsActuel);
 				if(e.getKeyCode()==e.VK_U)
 				{
+					System.out.println("START");
 					BeTheMan = new Game("CrymX");
 					BeTheMan.Touche();									
 					leThraed.start();
-						
 					
-					
-				}
-				if(e.getKeyCode()==e.VK_ENTER)
-				{
-					BeTheMan.GameOver();
-					BeTheMan.RecapGame();
-					BeTheMan = new Game("CrymX");
 				}
 			}
 
 		});
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	public  void GameOver() {
+		//
+		leThraed.kill();
+		System.out.println("GAME OVER");
+		BeTheMan.GameOver();
+		BeTheMan.RecapGame();
+		System.exit(0);
 	}
 
 
