@@ -2,6 +2,8 @@ package btm;
 
 import java.util.Date;
 
+import javax.swing.JOptionPane;
+
 public class Game {
 
 	private int nombreTouche;
@@ -46,7 +48,13 @@ public class Game {
 	
 	public void RecapGame()
 	{
+		JOptionPane.showMessageDialog(null," nb touche = "+this.getNombreTouche() +"  temps de jeux : "+ this.TempsDeJeu());
 		System.out.println("nb touche = "+this.getNombreTouche());
 		System.out.println("temps de jeux : "+ this.TempsDeJeu());
+	}
+
+	public void SaveScore() {
+		// TODO Auto-generated method stub
+		
 	}
 }

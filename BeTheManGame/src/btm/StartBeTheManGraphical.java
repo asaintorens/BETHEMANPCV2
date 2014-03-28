@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
+import javax.swing.JProgressBar;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.MouseAdapter;
@@ -15,6 +16,7 @@ public class StartBeTheManGraphical {
 	private JFrame frame;
 	private  Game BeTheMan;
 	private ThreadVerifPerdu leThraed;
+	private JProgressBar progressBar;
 	/**
 	 * Launch the application.
 	 */
@@ -70,17 +72,27 @@ public class StartBeTheManGraphical {
 			}
 
 		});
+		this.progressBar = new JProgressBar();
+		progressBar.setMaximum(200);
+		progressBar.setValue(0);
+		frame.add(progressBar);
+
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-
+	
+	public void setProgressBar(long pourcentage)
+	{
+		this.progressBar.setValue((int) (long) pourcentage);
+	}
 	public  void GameOver() {
-		//
-		leThraed.kill();
+		
 		System.out.println("GAME OVER");
 		BeTheMan.GameOver();
 		BeTheMan.RecapGame();
-		System.exit(0);
+		BeTheMan.SaveScore();
+		BeTheMan=new Game("CrymX");
+		leThraed = new ThreadVerifPerdu(null,this);	
 	}
 
 
